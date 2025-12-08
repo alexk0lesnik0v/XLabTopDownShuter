@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Markers;
+using UnityEngine;
 using UnityEngine.AI;
 
 namespace Players
@@ -7,6 +8,7 @@ namespace Players
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private NavMeshAgent m_agent;
+        [SerializeField] private TargetMarker m_targetMarker;
         
         private float m_speed;
 
@@ -31,6 +33,7 @@ namespace Players
 
         public void SetDestination(Vector3 navMeshPoint)
         {
+            m_targetMarker.Show(navMeshPoint);
             m_agent.SetDestination(navMeshPoint);
         }
     }

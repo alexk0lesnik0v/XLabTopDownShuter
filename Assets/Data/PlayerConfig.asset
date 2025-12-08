@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e775e1bb55d4c20a156447887a6f90d, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: Assembly-CSharp::Players.PlayerConfig
-  m_speed: 100
+  m_speed: 5
