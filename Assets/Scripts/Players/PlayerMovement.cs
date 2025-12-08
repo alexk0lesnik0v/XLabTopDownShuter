@@ -7,7 +7,6 @@ namespace Players
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField] private NavMeshAgent m_agent;
-        [SerializeField] private PlayerMovement m_playerMovement;
 
         private void OnValidate()
         {
@@ -20,11 +19,6 @@ namespace Players
         public void SetDestination(Vector3 navMeshPoint)
         {
             m_agent.SetDestination(navMeshPoint);
-        }
-
-        private void Update()
-        {
-            
         }
     }
 }

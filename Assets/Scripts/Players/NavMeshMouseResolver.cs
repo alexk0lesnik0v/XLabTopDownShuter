@@ -1,27 +1,34 @@
 ﻿using UnityEngine;
-using UnityEngine.InputSystem;
+using UnityEngine.AI;
 
 namespace Players
 {
     public class NavMeshMouseResolver : MonoBehaviour
     {
-        [SerializeField] private PlayerMovement m_playerMovement;
+        [SerializeField] private LayerMask m_layerMask = ~0;
+        [SerializeField] [Min(0)] private float m_raycastDistance = 1000f;
+        [SerializeField] [Min(0)] private float m_navMeshSampleMaxDistance = 100f;
         
         private Camera m_camera;
-        
-        public Vector3 GetNavMeshPoint(Vector3 mousePosition)
-        {
-            var ray = m_camera.ScreenPointToRay(Mouse.current.position.ReadValue());
 
-            if (Physics.Raycast(ray, out RaycastHit hit, 1000, ~0))
+        public void Initialize(Camera camera)
+        {
+            m_camera = camera;
+        }
+        
+        public Vector3? GetNavMeshPoint(Vector3 mousePosition)
+        {
+            var ray = m_camera.ScreenPointToRay(mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit, m_raycastDistance, m_layerMask))
             {
-                if (UnityEngine.AI.NavMesh.SamplePosition(hit.point, out var navHit, 1000, UnityEngine.AI.NavMesh.AllAreas))
+                if (NavMesh.SamplePosition(hit.point, out var navHit, m_navMeshSampleMaxDistance, NavMesh.AllAreas))
                 {
-                    m_playerMovement.SetDestination(navHit.position);
+                    return navHit.position;
                 }
             }
             
-            return m_playerMovement.transform.position;
+            return null;
         }
     }
 }
