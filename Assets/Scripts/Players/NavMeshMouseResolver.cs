@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Players
 {
     public class NavMeshMouseResolver : MonoBehaviour
     {
+        [SerializeField] private PlayerMovement m_playerMovement;
+        
         private Camera m_camera;
         
         public Vector3 GetNavMeshPoint(Vector3 mousePosition)
@@ -17,6 +20,8 @@ namespace Players
                     m_playerMovement.SetDestination(navHit.position);
                 }
             }
+            
+            return m_playerMovement.transform.position;
         }
     }
 }

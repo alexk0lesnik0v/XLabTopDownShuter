@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
 
 namespace Players
 {
@@ -12,12 +11,15 @@ namespace Players
 
         private void OnValidate()
         {
-            m_agent = GetComponent<NavMeshAgent>();
+            if (!m_agent)
+            {
+                m_agent = GetComponent<NavMeshAgent>();
+            }
         }
 
-        private void SetDestination(Vector3 destination)
+        public void SetDestination(Vector3 navMeshPoint)
         {
-            
+            m_agent.SetDestination(navMeshPoint);
         }
 
         private void Update()

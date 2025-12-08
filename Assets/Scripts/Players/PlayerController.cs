@@ -1,11 +1,9 @@
-using System;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 namespace Players
 {
-    
+    [RequireComponent(typeof(PlayerMovement))]
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private Transform m_target;
@@ -34,7 +32,7 @@ namespace Players
         
         private void Update()
         {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
+            if (Mouse.current.rightButton.wasPressedThisFrame)
             {
                 Vector3 mousePosition = Mouse.current.position.ReadValue();
                 Vector3? navPount = m_navMeshMouseResolver.GetNavMeshPoint(mousePosition);
