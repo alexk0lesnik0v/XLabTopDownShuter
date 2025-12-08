@@ -7,6 +7,7 @@ namespace Players
     [RequireComponent(typeof(NavMeshMouseResolver))]
     public class PlayerController : MonoBehaviour
     {
+        [SerializeField] private PlayerConfig m_config;
         [SerializeField] private PlayerMovement m_playerMovement;
         [SerializeField] private NavMeshMouseResolver m_navMeshMouseResolver;
         
@@ -25,6 +26,7 @@ namespace Players
 
         private void Start()
         {
+            m_playerMovement.Initialize(m_config.speed);
             m_navMeshMouseResolver.Initialize(Camera.main);
         }
       

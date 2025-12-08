@@ -195,6 +195,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -320,6 +321,21 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 501d989e63af45448cecd485324e0e04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Cameras.CameraFollow
+  m_target: {fileID: 862128444}
+  m_offset: {x: 0, y: 15, z: -10}
+  m_smoothTime: 0.15
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,6 +575,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592296982}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &862128444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4368415821198752597, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+  m_PrefabInstance: {fileID: 4087149997627160291}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &897820810
 GameObject:
   m_ObjectHideFlags: 0
@@ -631,6 +652,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2744689022979037070, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_config
+      value: 
+      objectReference: {fileID: 11400000, guid: 5de470c596af5434da635e3fae9713d9, type: 2}
     - target: {fileID: 4368415821198752597, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
