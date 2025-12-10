@@ -1,88 +1,38 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using DG.Tweening;
 
 namespace Markers
 {
     public sealed class TargetMarker : MonoBehaviour
     {
-        [Header("View")] 
-        [SerializeField] private Sprite m_sprite;
-        [SerializeField] private Color m_color = Color.white;
-
-        [Space] 
-        [SerializeField] [Min(0)] private float m_size = 1f;
-        [SerializeField] private float m_yOffset = 0.02f;
+        [Header("Parameters")]
+        [SerializeField] [Min(0)] private float m_stsrtSize = 0.25f;
+        [SerializeField] [Min(0)] private float m_finishSize = 0.5f;
+        [SerializeField] [Min(0.0001f)] private float m_duration = 0.5f;
         
-        [Header("Behaviour")]
-        [SerializeField] [Min(0)] private float m_lifetime = 1.25f;
+        [SerializeField] private Ease m_ease = Ease.InOutSine;
 
-        [Space] 
-        [SerializeField] private bool m_isPuls = true;
-        
-        [Tooltip("Pulsation amplitude")]
-        [SerializeField] [Range(0, 1f)] private float m_pulseOffset = 0.15f;
-        [SerializeField] [Min(0.01f)]  private float m_pulseSpeed = 6f;
-
-        private float m_initialSize;
-        private SpriteRenderer m_spriteRenderer;
-        private Coroutine m_showingCoroutine;
+        private Tweener m_tween;
 
         public void Show(Vector3 worldPosition)
         {
-            SetupView();
+            m_tween?.Kill();
             
             gameObject.SetActive(true);
-            m_spriteRenderer.enabled = true;
-            transform.position = new  Vector3(worldPosition.x, worldPosition.y  + m_yOffset, worldPosition.z);
             
-            if (m_showingCoroutine is not null)
-                StopCoroutine(m_showingCoroutine);
-
-            m_showingCoroutine = StartCoroutine(Showing());
-        }
-        
-        private void SetupView()
-        {
-            if (!m_spriteRenderer)
-            {
-                var spriteObject = new GameObject(name: "Marker Sprite");
-                
-                spriteObject.transform.SetParent(transform, false);
-                spriteObject.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
-                
-                m_spriteRenderer = spriteObject.AddComponent<SpriteRenderer>();
-                m_spriteRenderer.sortingOrder = 1000;
-                m_spriteRenderer.enabled = false;
-                
-                m_spriteRenderer.sprite = m_sprite;
-                m_spriteRenderer.color = m_color;
-
-                m_initialSize = Mathf.Max(0.01f, m_size);
-                transform.localScale = Vector3.one * m_initialSize;
-            }
-        }
-        
-        private IEnumerator Showing()
-        {
-            var time = 0f;
-
-            while (time < m_lifetime)
-            {
-                time += Time.deltaTime;
-
-                if (m_isPuls)
-                {
-                    var coefficient = 1f + Mathf.Sin(Time.time * m_pulseSpeed) *  m_pulseOffset;
-                    var scale = m_initialSize * coefficient;
-                    transform.localScale = Vector3.one * scale;
-                }
-
-                yield return null;
-            }
+            transform.position = worldPosition;
             
-            m_spriteRenderer.enabled = false;
-            transform.localScale = Vector3.one * m_initialSize;
+            transform.localScale = Vector3.one * m_stsrtSize;
+            
+            m_tween = transform.DOScale(Vector3.one * m_finishSize, m_duration).SetEase(m_ease).SetLoops(-1, LoopType.Yoyo);
+        }
+
+        public void Hide()
+        {
+            m_tween?.Kill();
+            m_tween = null;
+            
+            gameObject.SetActive(false);
         }
     }
 }
