@@ -1,4 +1,4 @@
-﻿using Markers;
+﻿using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,8 +7,10 @@ namespace Players
     [RequireComponent(typeof(NavMeshAgent))]
     public class PlayerMovement : MonoBehaviour
     {
+        public event Action Stopped;
+        public event Action<Vector3> DestinationChanged;
+        
         [SerializeField] private NavMeshAgent m_agent;
-        [SerializeField] private TargetMarker m_targetMarker;
         
         private float m_speed;
         private bool m_hasDestination;
@@ -33,10 +35,11 @@ namespace Players
 
             if (m_agent.remainingDistance <= m_agent.stoppingDistance)
             {
-                if (!m_agent.pathPending || m_agent.velocity.sqrMagnitude <= 0.001f)
+                if (!m_agent.hasPath || m_agent.velocity.sqrMagnitude <= 0.001f)
                 {
-                    m_targetMarker.Hide();
-                    m_hasDestination = false;
+                    m_agent.isStopped = false;
+                    
+                    Stopped?.Invoke();
                 }
             }
         }
@@ -49,10 +52,10 @@ namespace Players
 
         public void SetDestination(Vector3 navMeshPoint)
         {
-            m_targetMarker.Show(navMeshPoint);
             m_agent.SetDestination(navMeshPoint);
-            
             m_hasDestination = true;
+            
+            DestinationChanged?.Invoke(navMeshPoint);
         }
     }
 }
