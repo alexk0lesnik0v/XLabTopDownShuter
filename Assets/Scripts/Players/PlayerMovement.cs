@@ -11,6 +11,7 @@ namespace Players
         [SerializeField] private TargetMarker m_targetMarker;
         
         private float m_speed;
+        private bool m_hasDestination;
 
         private void OnValidate()
         {
@@ -20,9 +21,24 @@ namespace Players
             }
         }
 
-        private void Awake()
-        {
+        private void Awake() => 
             Initialize(m_speed);
+
+        private void Update()
+        {
+            if (!m_hasDestination || m_agent.pathPending)
+            {
+                return;
+            }
+
+            if (m_agent.remainingDistance <= m_agent.stoppingDistance)
+            {
+                if (!m_agent.pathPending || m_agent.velocity.sqrMagnitude <= 0.001f)
+                {
+                    m_targetMarker.Hide();
+                    m_hasDestination = false;
+                }
+            }
         }
 
         public void Initialize(float speed)
@@ -35,6 +51,8 @@ namespace Players
         {
             m_targetMarker.Show(navMeshPoint);
             m_agent.SetDestination(navMeshPoint);
+            
+            m_hasDestination = true;
         }
     }
 }
