@@ -1,19 +1,17 @@
-﻿using System;
-using Entities;
+﻿using Entities;
 using UnityEngine;
 
 namespace Magic.Effects
 {
-    [Serializable]
-    public class AttackEffect : IEffect, IHealth
+    public class HealEffect : IEffect
     {
-        [SerializeField] [Min(0)] private float m_damage;
+        [SerializeField] [Min(0)] private float m_heal;
 
         public void Apply(IEffectable effectable)
         {
             if (effectable is IHealth health)
             {
-                health.TakeDamage(m_damage);
+                health.Heal(m_heal);
             }
         }
     }
