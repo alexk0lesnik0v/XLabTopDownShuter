@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using Magic.Systems;
+using UnityEngine;
 
 namespace Magic.Data
 {
@@ -25,6 +27,7 @@ namespace Magic.Data
 
     internal class SpellsDatabase
     {
+        public IEnumerable<BaseSpellData> Spells { get; set; }
     }
 
    
