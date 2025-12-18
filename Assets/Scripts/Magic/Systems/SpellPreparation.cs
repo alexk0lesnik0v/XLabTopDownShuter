@@ -74,7 +74,7 @@ namespace Magic.Systems
             return true;
         }
 
-        private void Clear()
+        public void Clear()
         {
             m_elements.Clear();
             ElementsChanged?.Invoke(m_elements);

@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Magic.Data;
 using Magic.Elements;
+using Magic.Spells.Data;
 using UnityEngine;
 
 namespace Magic.Systems
@@ -10,15 +12,18 @@ namespace Magic.Systems
     {
         public event Action SpellCancelled;
         public event Action<MagicState> StateChanged;
-        public event Action<IReadOnlyList<ElementType>> ElementChanged;
+        public event Action<IReadOnlyList<ElementType>> ElementChanged
         {
-            add => SpellPreparation.ElementChanged
+            add => spellPreparation.ElementsChanged += value;
+            remove => spellPreparation.ElementsChanged -= value;
         } 
+        
+        [SerializeField] private MagicConfig m_config;
         
         private MagicState m_state;
         private SpellPreparation m_spellPreparation;
-
-        public MagicState State
+        
+        public MagicState state
         {
             get => m_state;
             private set
@@ -31,10 +36,16 @@ namespace Magic.Systems
             }
         }
         
-        private SpellPreparation spellPreparation => m_spellPreparation ??= new SpellPreparation(m_config);
-        
-        [SerializeField] private MagicConfig m_config;
+        private SpellPreparation spellPreparation => 
+            m_spellPreparation ??= new SpellPreparation(m_config);
 
+        private void OnEnable() => 
+            spellPreparation.OverflowOccured += CancelSpell;
+
+        
+        private void OnDisable() => 
+            spellPreparation.OverflowOccured -= CancelSpell;
+        
         public void AddElement(ElementType element)
         {
             if (state is MagicState.Cooldown or MagicState.Casting)
@@ -59,18 +70,35 @@ namespace Magic.Systems
                 state = MagicState.Casting;
                 
                 //TODO Cast
+
+                spellPreparation.Clear();
+                state = MagicState.Idle;
+            }
+            else
+            {
+                CancelSpell();
             }
         }
-
-        public bool TryGetSpell(out BaseSpellData spell)
+        
+        private void CancelSpell()
         {
-            spell = null;
-            return false;
+            if (state is MagicState.Preparation)
+            {
+                spellPreparation.Clear();
+                SpellCancelled?.Invoke();
+            }
         }
         
-        private void StartCoolDown()
+        private Coroutine m_cooldownCoroutine;
+
+        private void StartCooldown()
         {
-        
+            if (m_cooldownCoroutine is not null)
+            {
+                StopCoroutine(m_cooldownCoroutine);
+            }
+            
+            m_cooldownCoroutine = StartCoroutine(CooldownRoutine());
         }
 
         private IEnumerator CooldownRoutine()
@@ -83,8 +111,6 @@ namespace Magic.Systems
         }
     }
     
-    
-
     public enum MagicState
     {
         Idle,
