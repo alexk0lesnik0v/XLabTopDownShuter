@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Magic.Effects;
 using Magic.Elements;
 using UnityEngine;
 
@@ -10,6 +11,9 @@ namespace Magic.Spells.Data
         [SerializeField] private string m_spellName;
         [SerializeField] private GameObject m_visualEffect;
         [SerializeField] private ElementType[] m_combination;
+        
+        [SerializeReferenceDropdown]
+        [SerializeReference] private IEffect[] m_effects;
 
         public string spellName => m_spellName;
         
