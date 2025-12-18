@@ -1,13 +1,16 @@
-﻿using System.Collections;
-using Magic.Spells.Data;
+﻿using Magic.Spells.Data;
 using UnityEngine;
-using Vector3 = System.Numerics.Vector3;
 
 namespace Magic.Systems
 {
     public class SpellCaster
     {
         private Transform m_casterTransform;
+
+        public SpellCaster(Transform casterTransform)
+        {
+            m_casterTransform = casterTransform;
+        }
         
         public void Cast(BaseSpellData spell, Vector3 worldPosition)
         {
@@ -24,8 +27,13 @@ namespace Magic.Systems
                     break;
                 case NonTargetSpellData nonTargetSpell: CastNonTarget(nonTargetSpell);
                     break;
-                case AoeSpellData aoeSpell: CastAoe(aoeSpell, worldPosition);
+                case AoeSpellData aoeSpell:
+                {
+                    CastAoe(aoeSpell, aoeSpell.IsTarget 
+                        ? worldPosition 
+                        : m_casterTransform.position);
                     break;
+                }
             }
         }
         

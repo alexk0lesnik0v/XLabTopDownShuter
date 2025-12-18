@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Inputs;
 using Magic.Data;
 using Magic.Elements;
-using Magic.Spells.Data;
 using UnityEngine;
 
 namespace Magic.Systems
@@ -19,8 +19,11 @@ namespace Magic.Systems
         } 
         
         [SerializeField] private MagicConfig m_config;
+        [SerializeField] private MouseResolver m_mouseResolver;
         
         private MagicState m_state;
+        private SpellCaster m_caster;
+        private Coroutine m_cooldownCoroutine;
         private SpellPreparation m_spellPreparation;
         
         public MagicState state
@@ -38,6 +41,11 @@ namespace Magic.Systems
         
         private SpellPreparation spellPreparation => 
             m_spellPreparation ??= new SpellPreparation(m_config);
+
+        private void Awake()
+        {
+            m_caster = new SpellCaster(transform);
+        }
 
         private void OnEnable() => 
             spellPreparation.OverflowOccured += CancelSpell;
@@ -69,7 +77,7 @@ namespace Magic.Systems
             {
                 state = MagicState.Casting;
                 
-                //TODO Cast
+                m_caster.Cast(spell, m_mouseResolver.GetCursorWorldPosition().Value);
 
                 spellPreparation.Clear();
                 state = MagicState.Idle;
@@ -86,11 +94,11 @@ namespace Magic.Systems
             {
                 spellPreparation.Clear();
                 SpellCancelled?.Invoke();
+                
+                StartCooldown();
             }
         }
         
-        private Coroutine m_cooldownCoroutine;
-
         private void StartCooldown()
         {
             if (m_cooldownCoroutine is not null)
@@ -109,13 +117,5 @@ namespace Magic.Systems
             
             m_cooldownCoroutine = null;
         }
-    }
-    
-    public enum MagicState
-    {
-        Idle,
-        Preparation,
-        Cooldown,
-        Casting
     }
 }

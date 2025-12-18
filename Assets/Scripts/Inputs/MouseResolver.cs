@@ -2,9 +2,9 @@
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
-namespace Players
+namespace Inputs
 {
-    public class NavMeshMouseResolver : MonoBehaviour
+    public class MouseResolver : MonoBehaviour
     {
         [SerializeField] private LayerMask m_layerMask = ~0;
         [SerializeField] [Min(0)] private float m_raycastDistance = 1000f;
@@ -21,6 +21,21 @@ namespace Players
             m_mouse = Mouse.current;
         }
 
+        public Vector3? GetNavMeshPoint()
+        {
+            var ray = m_camera.ScreenPointToRay(mousePosition);
+
+            if (Physics.Raycast(ray, out var hit, m_raycastDistance, m_layerMask))
+            {
+                if (NavMesh.SamplePosition(hit.point, out var navHit, m_navMeshSampleMaxDistance, areaMask: NavMesh.AllAreas))
+                {
+                    return navHit.position;
+                }
+            }
+            
+            return null;
+        }
+        
         public Vector3? GetCursorWorldPosition()
         {
             var ray = m_camera.ScreenPointToRay(mousePosition);
@@ -29,24 +44,12 @@ namespace Players
             {
                 return hit.point;
             }
-            return null;
-        }
+            
+            var plane = new Plane(inNormal: Vector3.up, Vector3.zero);
 
-        public void Initialize(Camera camera)
-        {
-            m_camera = camera;
-        }
-        
-        public Vector3? GetNavMeshPoint(Vector3 mousePosition)
-        {
-            var ray = m_camera.ScreenPointToRay(mousePosition);
-
-            if (Physics.Raycast(ray, out RaycastHit hit, m_raycastDistance, m_layerMask))
+            if (plane.Raycast(ray, out var distance))
             {
-                if (NavMesh.SamplePosition(hit.point, out var navHit, m_navMeshSampleMaxDistance, NavMesh.AllAreas))
-                {
-                    return navHit.position;
-                }
+                return ray.GetPoint(distance);
             }
             
             return null;
