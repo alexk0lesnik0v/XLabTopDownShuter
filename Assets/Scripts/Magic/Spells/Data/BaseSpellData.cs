@@ -5,15 +5,17 @@ using UnityEngine;
 
 namespace Magic.Spells.Data
 {
-    public abstract class BaseSpellsData : ScriptableObject
+    public abstract class BaseSpellData : ScriptableObject
     {
         [SerializeField] private string m_spellName;
         [SerializeField] private GameObject m_visualEffect;
         [SerializeField] private ElementType[] m_combination;
 
-        public string SpellName => m_spellName;
-        public GameObject VisualEffect => m_visualEffect;
-        public IReadOnlyList<ElementType> Combination => m_combination;
+        public string spellName => m_spellName;
+        
+        public GameObject visualEffect => m_visualEffect;
+        
+        public IReadOnlyList<ElementType> combination => m_combination;
 
         private void OnValidate()
         {

@@ -25,7 +25,7 @@ namespace Players
         }
 
         private void Awake() => 
-            Initialize(m_speed,  m_angularSpeed);
+            Initialize(m_speed, m_angularSpeed);
 
         private void Update()
         {
@@ -49,8 +49,11 @@ namespace Players
         {
             m_speed = speed;
             m_angularSpeed = angularSpeed;
+            
             m_agent.speed = speed;
             m_agent.angularSpeed = angularSpeed;
+            
+            m_agent.updateRotation = false;
         }
 
         public void SetDestination(Vector3 navMeshPoint)

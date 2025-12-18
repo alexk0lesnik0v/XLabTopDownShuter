@@ -3,8 +3,5 @@
 namespace Magic.Spells.Data
 {
     [CreateAssetMenu(fileName = "SelfSpellData", menuName = "XLab/Magic/Spells/Self Spell")]
-    public class SelfSpellData : BaseSpellsData
-    {
-        
-    }
+    public class SelfSpellData : BaseSpellData {  }
 }

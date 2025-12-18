@@ -30,8 +30,8 @@ namespace Players
         {
             var camera =  Camera.main;
             
-            m_playerMovement.Initialize(m_config.speed,  m_config.angularSpeed);
-            m_navMeshMouseResolver.Initialize(Camera.main);
+            m_navMeshMouseResolver.Initialize(camera);
+            m_playerMovement.Initialize(m_config.speed, m_config.angularSpeed);
             m_playerRotationCalculator = new PlayerRotationCalculator(camera, transform);
             
             SetupCursor();
@@ -59,7 +59,6 @@ namespace Players
             if (texture)
             {
                 var hotspot = new Vector2(texture.width / 2f, texture.height / 2f);
-                
                 Cursor.SetCursor(texture, hotspot, CursorMode.Auto);
             }
         }

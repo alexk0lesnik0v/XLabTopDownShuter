@@ -26,12 +26,12 @@ namespace Players
             cameraForward.y = 0f;
             cameraForward.Normalize();
             
-            var WorldDirection = cameraRight * delta.x + cameraForward * delta.y;
-            WorldDirection.y = 0f;
+            var worldDirection = cameraRight * delta.x + cameraForward * delta.y;
+            worldDirection.y = 0f;
 
-            if (WorldDirection.sqrMagnitude > 0.0001f)
+            if (worldDirection.sqrMagnitude > 0.0001f)
             {
-                return m_playerTransform.position + WorldDirection;
+                return m_playerTransform.position + worldDirection;
             }
             
             return Vector3.zero;
