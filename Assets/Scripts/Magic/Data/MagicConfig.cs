@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using Magic.Elements;
+using Magic.Spells.Data;
 using Magic.Systems;
 using UnityEngine;
 
@@ -20,15 +22,4 @@ namespace Magic.Data
         
         public float cancelCooldown => m_cancelCooldown;
     }
-
-    internal class ElementsData
-    {
-    }
-
-    internal class SpellsDatabase
-    {
-        public IEnumerable<BaseSpellData> Spells { get; set; }
-    }
-
-   
 }

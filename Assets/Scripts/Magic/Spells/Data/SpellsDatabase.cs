@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Magic.Spells.Data
 {
-    [CreateAssetMenu(fileName = "SpellsDataBase", menuName = "XLab/Magic/Spells/Spells DataBase")]
-    public sealed class SpellDataBase : ScriptableObject
+    [CreateAssetMenu(fileName = "SpellsDataBase", menuName = "XLab/Magic/Spells/Spells Database")]
+    public sealed class SpellsDatabase : ScriptableObject
     {
         [SerializeField] private BaseSpellData[] m_spells;
         

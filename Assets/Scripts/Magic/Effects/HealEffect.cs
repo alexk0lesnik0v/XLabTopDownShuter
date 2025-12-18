@@ -1,9 +1,11 @@
-﻿using Entities;
+﻿using System;
+using Entities;
 using UnityEngine;
 
 namespace Magic.Effects
 {
-    public class HealEffect : IEffect
+    [Serializable]
+    public sealed class HealEffect : IEffect
     {
         [SerializeField] [Min(0)] private float m_heal;
 
