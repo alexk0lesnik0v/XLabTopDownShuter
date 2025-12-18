@@ -9,6 +9,7 @@ namespace Magic.Spells.Data
         [SerializeField] [Min(0)] private float m_radius;
         
         public float radius => m_radius;
+        
         public bool IsTarget => m_isTarget;
     }
 }

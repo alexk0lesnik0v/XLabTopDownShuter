@@ -2,22 +2,21 @@
 using System.Collections.Generic;
 using Magic.Data;
 using Magic.Elements;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager.Requests;
+using Magic.Spells.Data;
 
 namespace Magic.Systems
 {
     public class SpellPreparation
     {
-        public Action OverflowOccured;
+        public event Action OverflowOccured;
         public event Action<IReadOnlyList<ElementType>> ElementsChanged;
         
         private MagicConfig m_magicConfig;
         private List<ElementType> m_elements = new();
 
-        public SpellPreparation(MagicConfig [mConfig])
+        public SpellPreparation(MagicConfig magicConfig)
         {
-            throw new NotImplementedException();
+            m_magicConfig = magicConfig;
         }
 
         public static object ElementChanged { get; set; }
@@ -27,12 +26,12 @@ namespace Magic.Systems
             if (m_elements.Count >= m_magicConfig.MaxElements)
             {
                 Clear();
-                // TODO Overflow occured
+                OverflowOccured?.Invoke();
             }
             else
             {
                 m_elements.Add(elementType);
-                // TODO InvokeChanged
+                ElementsChanged?.Invoke(m_elements);
             }
         }
 
@@ -47,14 +46,17 @@ namespace Magic.Systems
 
             foreach (var spellData in m_magicConfig.SpellsDataBase.Spells)
             {
-                spell = spellData;
-                return true;
+                if (IsMatchingCombination(spellData.combination))
+                {
+                    spell = spellData;
+                    return true;
+                }
             }
             
             return false;
         }
 
-        private bool IsMatchungCombination(IReadOnlyList<ElementType> combination)
+        private bool IsMatchingCombination(IReadOnlyList<ElementType> combination)
         {
             if (combination.Count != m_elements.Count)
             {
@@ -68,16 +70,14 @@ namespace Magic.Systems
                     return false;
                 }
             }
+            
+            return true;
         }
 
         private void Clear()
         {
-            throw new System.NotImplementedException();
+            m_elements.Clear();
+            ElementsChanged?.Invoke(m_elements);
         }
-    }
-
-    public class BaseSpellData
-    {
-        
     }
 }
