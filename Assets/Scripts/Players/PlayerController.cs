@@ -1,16 +1,17 @@
 using Inputs;
+using Magic.Systems;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Players
 {
     [RequireComponent(typeof(PlayerMovement))]
-    [RequireComponent(typeof(MouseResolver))]
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private PlayerConfig m_config;
         [SerializeField] private PlayerMovement m_playerMovement;
         [SerializeField] private MouseResolver m_mouseResolver;
+        [SerializeField] private MagicInputHelper m_magicInputHelper;
         
         private PlayerRotationCalculator m_playerRotationCalculator;
         
@@ -50,6 +51,8 @@ namespace Players
                 if (navPoint.HasValue)
                     m_playerMovement.SetDestination(navPoint.Value);
             }
+            
+            m_magicInputHelper.Update();
         }
 
         private void SetupCursor()

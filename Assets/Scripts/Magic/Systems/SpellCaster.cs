@@ -38,8 +38,11 @@ namespace Magic.Systems
         }
         
         private void CastSelf(SelfSpellData spell) { }
-        
-        private void CastTarget(TargetSpellData spell, Vector3 worldPosition) { }
+
+        private void CastTarget(TargetSpellData spell, Vector3 worldPosition)
+        {
+            Debug.Log("Casting " + spell.name + " to" + worldPosition);
+        }
         
         private void CastNonTarget(NonTargetSpellData spell) { }
         

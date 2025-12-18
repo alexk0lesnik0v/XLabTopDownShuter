@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-using Magic.Elements;
+﻿using Magic.Elements;
 using Magic.Spells.Data;
-using Magic.Systems;
 using UnityEngine;
 
 namespace Magic.Data
 {
+    [CreateAssetMenu(fileName = "MagicConfig", menuName = "XLab/Magic/MagicConfig")] 
     public sealed class MagicConfig : ScriptableObject
     {
         [SerializeField] private ElementsData m_elementsData;

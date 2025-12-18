@@ -291,6 +291,9 @@ GameObject:
   - component: {fileID: 7207680211867756784}
   - component: {fileID: 4328220619027246342}
   - component: {fileID: 5215183516203697874}
+  - component: {fileID: 7629991807017933800}
+  - component: {fileID: 6124518112973739395}
+  - component: {fileID: 5249487897441044614}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -416,6 +419,54 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7629991807017933800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7415942719921883364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c69a179f38648b99cbddaac638a72b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Players.PlayerMovement
+  m_agent: {fileID: 5215183516203697874}
+--- !u!114 &6124518112973739395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7415942719921883364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 168f189f64bded34082ae1e228f76736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Players.PlayerController
+  m_config: {fileID: 11400000, guid: 5de470c596af5434da635e3fae9713d9, type: 2}
+  m_playerMovement: {fileID: 7629991807017933800}
+  m_mouseResolver: {fileID: 0}
+  m_magicInputHelper:
+    m_magicSystem: {fileID: 5249487897441044614}
+    m_element1Key: 31
+    m_element2Key: 37
+    m_element3Key: 19
+    m_element4Key: 32
+--- !u!114 &5249487897441044614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7415942719921883364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24e0af9473a244dab5339e9d09165fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Magic.Systems.MagicSystem
+  m_config: {fileID: 11400000, guid: 38105bb1208117045b73d356896eac0a, type: 2}
+  m_mouseResolver: {fileID: 0}
 --- !u!1001 &2550438083841720638
 PrefabInstance:
   m_ObjectHideFlags: 0
