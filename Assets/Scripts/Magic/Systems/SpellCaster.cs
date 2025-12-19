@@ -76,7 +76,7 @@ namespace Magic.Systems
                 projectile.GetComponent<ISpellProjectile>() ??
                 projectile.AddComponent<SpellProjectile>();
             
-            spellProjectile.Initialize(worldPosition, targetSpell.speed, targetSpell.effect);
+            spellProjectile.Initialize(worldPosition, targetSpell.speed, targetSpell.effects);
         }
 
         private void CastNonTarget(NonTargetSpellData nonTargetSpell)
