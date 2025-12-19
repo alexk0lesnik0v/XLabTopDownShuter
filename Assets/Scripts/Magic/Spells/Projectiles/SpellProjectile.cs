@@ -7,7 +7,7 @@ using UnityEngine;
 namespace Magic.Spells.Projectiles
 {
     [RequireComponent(typeof(Rigidbody))]
-    public sealed class SpellProjectile : MonoBehaviour, ISpellProjectiles
+    public sealed class SpellProjectile : MonoBehaviour, ISpellProjectile
     {
         [SerializeField] private Rigidbody m_rigidbody;
         
