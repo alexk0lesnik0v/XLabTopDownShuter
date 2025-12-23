@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireballSpell
   m_EditorClassIdentifier: Assembly-CSharp::Magic.Spells.Data.TargetSpellData
   m_spellName: Fireball
-  m_visualEffect: {fileID: 3654160790328391014, guid: 84a87c9ccb16c5a43a4e7c260b1da0d5, type: 3}
+  m_visualEffect: {fileID: 1977975570158332, guid: 443566c1d553c524ba2b591f0c9c3ce8, type: 3}
   m_combination: 00000000
   m_effects:
   - rid: 4245267599034417215
