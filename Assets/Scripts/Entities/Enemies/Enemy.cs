@@ -8,9 +8,12 @@ namespace Entities.Enemies
     {
         [SerializeField] private EnemyData m_enemyData;
         [SerializeField] private HealthComponent m_health;
+        
         private EnemyData m_data;
         
-        //TODO Add HealsComponent
+        public IHealth health => m_health;
+        
+        //TODO Add HealthComponent
         //TODO Add Movement
         //TODO Add AttackComponent
 
@@ -23,7 +26,7 @@ namespace Entities.Enemies
         {
             m_health.ValueChanged += () =>
             {
-                Debug.Log($"Health Changed: {m_health.Value}");
+                Debug.Log($"Health Changed: {m_health.value}");
             };
 
             m_health.Died += OnDied;
