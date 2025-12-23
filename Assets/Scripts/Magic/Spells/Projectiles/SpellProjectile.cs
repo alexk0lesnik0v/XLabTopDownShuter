@@ -54,6 +54,11 @@ namespace Magic.Spells.Projectiles
         {
             if (!m_initialized) return;
             
+            if(other.GetComponent<PlayerController>())
+            {
+                return;
+            }
+            
             if (other.TryGetComponent<IEffectable>(out var effectable))
                 ApplyEffects(effectable);
             

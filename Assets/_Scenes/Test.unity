@@ -1308,6 +1308,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1366464433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6605399159455336086, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+  m_PrefabInstance: {fileID: 4087149997627160291}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1366464438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366464433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01845eb50206475e9e8291d59c1d847a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Utils.FixedRotation
 --- !u!1 &1508813470
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,14 +1606,65 @@ PrefabInstance:
       propertyPath: m_mouseResolver
       value: 
       objectReference: {fileID: 469594914}
+    - target: {fileID: 7119641668938073519, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119641668938073519, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119641668938073519, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7119641668938073519, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7415942719921883364, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7549518095553224611, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549518095553224611, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549518095553224611, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549518095553224611, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020796913450024238, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020796913450024238, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020796913450024238, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020796913450024238, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6605399159455336086, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1366464438}
   m_SourcePrefab: {fileID: 100100000, guid: f39fcfe735ea4b64f9d95c85c767470b, type: 3}
 --- !u!114 &4087149997627160296 stripped
 MonoBehaviour:
