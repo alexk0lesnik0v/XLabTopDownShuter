@@ -34,7 +34,12 @@ namespace Entities.Enemies
 
         private void OnDied()
         {
-            throw new System.NotImplementedException();
+            
+        }
+
+        private void Update()
+        {
+            
         }
 
         private void OnDisable()
