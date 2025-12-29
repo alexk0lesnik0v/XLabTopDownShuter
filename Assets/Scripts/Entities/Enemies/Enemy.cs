@@ -31,12 +31,7 @@ namespace Entities.Enemies
 
             m_health.Died += OnDied;
         }
-
-        private void OnDied()
-        {
-            
-        }
-
+      
         private void Update()
         {
             
@@ -50,7 +45,13 @@ namespace Entities.Enemies
         public void Initialize(EnemyData data)
         {
             m_data = data;
-            m_health.Initialize(data.heals);
+            m_health.Initialize(data.health);
+        }
+        
+        private void OnDied()
+        {
+            Debug.Log("Enemy Died");
+            Destroy(gameObject);
         }
     }
 }

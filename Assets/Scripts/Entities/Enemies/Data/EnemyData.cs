@@ -20,7 +20,7 @@ namespace Entities.Enemies.Data
         //TODO Add ProjectileRange - область поражения снаряда
         //TODO Add Damage
         
-        public float heals => m_health;
+        public float health => m_health;
         
         public float speed => m_speed;
 

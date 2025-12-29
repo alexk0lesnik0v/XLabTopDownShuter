@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Threading;
+using Magic.Effects;
 using UnityEngine;
 
 namespace Entities
 {
-    public class HealthComponent : MonoBehaviour, IHealth
+    public class HealthComponent : MonoBehaviour, IHealth, IEffectable
     {
         public event Action Died;
         public event Action ValueChanged;
