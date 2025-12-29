@@ -54,9 +54,7 @@ namespace Magic.Spells.Projectiles
         {
             if (!m_initialized) return;
             
-            if (other.TryGetComponent<IEffectable>(out var effectable))
-                ApplyEffects(effectable);
-            
+            m_effects.ApplyEffects(other.GetComponents<IEffectable>());
             Destroy(gameObject);
         }
 
@@ -80,17 +78,7 @@ namespace Magic.Spells.Projectiles
             
             SetLinearVelocity();
         }
-
-        private void ApplyEffects(IEffectable target)
-        {
-            if (m_effects is null) return;
-
-            foreach (var effect in m_effects)
-            {
-                effect?.Apply(target);
-            }
-        }
-
+        
         private void SetLinearVelocity() => 
             m_rigidbody.linearVelocity = m_direction * m_speed;
     }
