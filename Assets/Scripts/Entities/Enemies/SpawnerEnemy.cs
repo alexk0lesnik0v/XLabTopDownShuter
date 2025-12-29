@@ -20,16 +20,20 @@ namespace Entities.Enemies
                 var enemyInstance = Instantiate(enemy, spawnPoint);
                 enemyInstance.Initialize(enemyData);
 
-                enemyInstance.health.Died += OnDied;
+                enemyInstance.Died += OnDied;
             }
         }
 
-        
+        private void OnDied(Enemy enemy)
+        {
+            Destroy(enemy.gameObject);
+        }
+
 
         private Enemy GetEnemy() =>
-        m_enemies[Random.Range(0, m_enemies.Length)];
+            m_enemies[Random.Range(0, m_enemies.Length)];
         
         private EnemyData  GetEnemyData() =>
-        m_data[Random.Range(0, m_data.Length)];
+            m_data[Random.Range(0, m_data.Length)];
     }
 }
