@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Entities.Enemies.Systems
 {
-    public sealed class AttackEnemySystem : MonoBehaviour
+    public sealed class AttackEnemy : MonoBehaviour
     {
         private Transform m_target;
         private BaseSpellData m_spell;
@@ -12,6 +12,7 @@ namespace Entities.Enemies.Systems
 
         private float m_attackTime;
         private float m_cooldownTimer;
+        
         private bool m_isInitialized;
 
         public void Initialize(BaseSpellData spell, float attackTime, Transform target)

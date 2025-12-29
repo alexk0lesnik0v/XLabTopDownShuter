@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7186200642481090196}
   - component: {fileID: 488457627785556013}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PreparationView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77,7 +77,8 @@ GameObject:
   - component: {fileID: 6453941782270359305}
   - component: {fileID: 2234388151280179896}
   - component: {fileID: 4479904425114453861}
-  m_Layer: 0
+  - component: {fileID: 5565326279540808975}
+  m_Layer: 6
   m_Name: PlayerCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +168,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5565326279540808975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6605399159455336086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01845eb50206475e9e8291d59c1d847a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Utils.FixedRotation
 --- !u!1 &6904034496676352188
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,7 +192,7 @@ GameObject:
   - component: {fileID: 1264388278743980749}
   - component: {fileID: 5045852335923503223}
   - component: {fileID: 6207571603830236359}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +307,7 @@ GameObject:
   - component: {fileID: 7629991807017933800}
   - component: {fileID: 6124518112973739395}
   - component: {fileID: 5249487897441044614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -410,7 +423,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 1000
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -475,6 +488,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7186200642481090196}
     m_Modifications:
+    - target: {fileID: 2067281109788201064, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5488587942123240464, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -559,6 +576,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PreparationElement (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6091173271159256093, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -577,6 +598,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7186200642481090196}
     m_Modifications:
+    - target: {fileID: 2067281109788201064, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5488587942123240464, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -661,6 +686,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PreparationElement (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6091173271159256093, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -679,6 +708,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7186200642481090196}
     m_Modifications:
+    - target: {fileID: 2067281109788201064, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 5488587942123240464, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -762,6 +795,10 @@ PrefabInstance:
     - target: {fileID: 6091173271159256093, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
       propertyPath: m_Name
       value: PreparationElement (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6091173271159256093, guid: 3f48879677060654ab8d575ba95a28ef, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

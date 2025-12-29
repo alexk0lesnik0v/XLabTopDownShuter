@@ -13,7 +13,9 @@ GameObject:
   - component: {fileID: 5076644731767075293}
   - component: {fileID: 2169515150972260742}
   - component: {fileID: 6649340925498506587}
-  m_Layer: 0
+  - component: {fileID: 182987249185718326}
+  - component: {fileID: 5492551442512322311}
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,3 +128,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0948748a6abe4bd9a3fc27149f7c737b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Entities.Enemies.Enemy
+  m_attack: {fileID: 5492551442512322311}
+  m_health: {fileID: 182987249185718326}
+--- !u!114 &182987249185718326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2799860436623619663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc38453ef07b41098f62d3a1775f242c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entities.HealthComponent
+--- !u!114 &5492551442512322311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2799860436623619663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d30a699b6b4f17b4cf943e9ffe5a01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Entities.Enemies.Systems.AttackEnemy

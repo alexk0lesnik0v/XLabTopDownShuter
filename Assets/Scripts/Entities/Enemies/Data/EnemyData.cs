@@ -17,20 +17,16 @@ namespace Entities.Enemies.Data
         [SerializeField] [Min(0)] private float m_attackTime;
         [SerializeField] [Min(0)] private float m_attackRange;
         
-        //TODO Add ProjectileRange - область поражения снаряда
-        //TODO Add Damage
-        
         public float health => m_health;
         
         public float speed => m_speed;
+        
+        public BaseSpellData spell => m_spell;
 
         public float attackTime => m_attackTime;
         
         public float attackRange => m_attackRange;
         
         public AttackEnemyType enemyType => m_enemyType;
-        
-        public BaseSpellData spell => m_spell;
     }
-    
 }
