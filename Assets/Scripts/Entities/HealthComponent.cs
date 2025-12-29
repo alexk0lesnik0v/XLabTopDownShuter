@@ -46,17 +46,17 @@ namespace Entities
         public void Heal(float heal)
         {
             if (heal < 0)
-                throw new AbandonedMutexException(nameof(heal), heal,"Heal cannot be negative");
+                throw new ArgumentOutOfRangeException(nameof(heal), heal,"Heal cannot be negative");
             
             value += heal;
         }
-        
-        public void Damage(float damage)
+
+        public void TakeDamage(float damage)
         {
             if (damage < 0)
-                throw new AbandonedMutexException(nameof(damage), damage,"Heal cannot be negative");
+                throw new ArgumentOutOfRangeException(nameof(damage), damage,"Damage cannot be negative");
             
-            value -= heal;
+            value -= damage;
         }
     }
 }

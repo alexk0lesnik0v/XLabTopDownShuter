@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
-using Entities.Enemies.Data;
 using Magic.Spells.Data;
 
 namespace Entities.Enemies.Data
 {
+    [CreateAssetMenu(fileName = "EnemyData", menuName = "XLab/Enemies/Enemy")]
     public class EnemyData : ScriptableObject
     {
         [SerializeField] private AttackEnemyType m_enemyType;
         
-        [Header("Parametrs")]
+        [Header("Parameters")]
         [SerializeField] [Min(0)] private float m_health;
         [SerializeField] [Range(0f, 100f)] private float m_speed;
         
