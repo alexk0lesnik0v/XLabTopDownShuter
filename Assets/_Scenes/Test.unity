@@ -1759,6 +1759,7 @@ MonoBehaviour:
   - {fileID: 6649340925498506587, guid: 2b7bfb6ebe72d384c8e9f66f79a1324c, type: 3}
   m_data:
   - {fileID: 11400000, guid: 6f09d8b0f03605342a2979237cafcda3, type: 2}
+  - {fileID: 11400000, guid: 4b899aa480c46a04d8e3a387d6193a66, type: 2}
   m_spawnPoints:
   - {fileID: 1932541812}
   - {fileID: 2007624604}
