@@ -4,16 +4,20 @@ using Magic.Effects;
 using Magic.Spells.Aoe;
 using Magic.Spells.Data;
 using Magic.Spells.Projectiles;
+using UnityEngine.Pool;
 using Object = UnityEngine.Object;
 
 namespace Magic.Systems
 {
     public sealed class SpellCaster
     {
+        private bool m_isSingleSpell;
         private readonly Transform m_casterTransform;
+        private ObjectPool<GameObject> m_visualEffectPool;
 
-        public SpellCaster(Transform casterTransform)
+        public SpellCaster(Transform casterTransform, bool isSingleSpell = false)
         {
+            m_isSingleSpell = isSingleSpell;
             m_casterTransform = casterTransform;
         }
         
@@ -88,6 +92,12 @@ namespace Magic.Systems
 
         private void CastAoe(AoeSpellData aoeSpell, Vector3 worldPosition)
         {
+            if (!m_isSingleSpell)
+            {
+                m_visualEffectPool ??=  new ObjectPool<GameObject>( 
+                    createFunc:() => new GameObject("VisualEffect"));
+            }
+            
             var aoe = aoeSpell.visualEffect
                 ? Object.Instantiate(aoeSpell.visualEffect, m_casterTransform.position, Quaternion.identity)
                 : new GameObject();
