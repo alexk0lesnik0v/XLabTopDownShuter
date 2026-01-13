@@ -29,7 +29,7 @@ namespace Magic.Views
         private void OnEnable()
         {
             m_magicSystem.ElementChanged += UpdateIcons;
-            m_magicSystem.SpellCancelled -= ShakeContainer;
+            m_magicSystem.SpellCancelled += ShakeContainer;
         }
 
        private void UpdateIcons(IReadOnlyList<ElementType> elements)
