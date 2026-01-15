@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Magic.Effects;
+using Magic.Effects.Extensions;
 using UnityEngine;
 
 namespace Magic.Spells.Aoe
@@ -12,13 +13,8 @@ namespace Magic.Spells.Aoe
 
             foreach (var collider in colliders)
             {
-                if (collider.TryGetComponent<IEffectable>(out var effectable))
-                {
-                    foreach (var effect in effects)
-                    {
-                        effect.Apply(effectable);
-                    }
-                }
+                var effectables = collider.GetComponents<IEffectable>();
+                effects.ApplyEffects(effectables);
             }
         }
     }

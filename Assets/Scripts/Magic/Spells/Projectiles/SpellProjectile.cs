@@ -2,6 +2,7 @@
 using Players;
 using System.Collections.Generic;
 using Magic.Effects;
+using Magic.Effects.Extensions;
 using UnityEngine;
 
 namespace Magic.Spells.Projectiles
