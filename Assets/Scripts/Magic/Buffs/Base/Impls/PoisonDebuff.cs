@@ -12,10 +12,23 @@ namespace Magic.Buffs.Base.Impls
 
         [NonSerialized] private float m_timer;
         private IHealth m_health;
+        
+        public PoisonDebuff() { }
 
-        protected override void OnInitialize()
+        public PoisonDebuff(
+            string id,
+            float duration,
+            float interval,
+            float damagedPerSeconds) 
+            : base(id, duration)
         {
-            base.OnInitialize();
+            m_interval = interval;
+            m_damagedPerSeconds = damagedPerSeconds;
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
             m_health = conteiner.GetComponent<IHealth>();
         }
 
@@ -28,7 +41,7 @@ namespace Magic.Buffs.Base.Impls
 
         protected override void OnUpdated(float deltaTime)
         {
-            if (m_health is not null)
+            if (m_health is null)
             {
                 Deinitialize();
                 return;
@@ -42,8 +55,10 @@ namespace Magic.Buffs.Base.Impls
             {
                 m_timer = 0;
                 m_health.TakeDamage(m_damagedPerSeconds);
-                // TODO Attack
             }
         }
+        
+        public override object Clone() =>
+            new PoisonDebuff(Id, duration,  m_interval, m_damagedPerSeconds);
     }
 }

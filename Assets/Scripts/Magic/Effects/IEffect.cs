@@ -4,6 +4,4 @@
     {
         public void Apply(IEffectable effectable);
     }
-    
-    public interface IEffectable { }
 }

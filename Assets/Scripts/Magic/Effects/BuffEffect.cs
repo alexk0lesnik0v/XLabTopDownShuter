@@ -1,9 +1,8 @@
 ﻿using System;
-using Magic.Effects;
-using Unity.VisualScripting;
+using Magic.Buffs;
 using UnityEngine;
 
-namespace Magic.Buffs.Extensions
+namespace Magic.Effects
 {
     [Serializable]
     public class BuffEffect : IEffect
@@ -17,7 +16,7 @@ namespace Magic.Buffs.Extensions
             {
                 foreach (var buff in m_buffs)
                 {
-                    conteiner.Add(buff);
+                    conteiner.Add(buff.Clone() as IBuff);
                 }
             }
         }

@@ -25,7 +25,7 @@ namespace Magic.Buffs
 
         public void Remove(IBuff buff)
         {
-            m_ids.Remove(buff.Id);
+            m_ids.Add(buff.Id);
         }
 
         public void Update()

@@ -1,21 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Magic.Buffs.Base
 {
+    [Serializable]
     public abstract class BaseBuff : IBuff
     {
-        protected BuffConteiner conteiner { get; private set; }
-        
         [field: SerializeField]
         public string Id { get; private set; }
+        
+        protected BuffConteiner conteiner { get; private set; }
+        
+        public BaseBuff() { }
+
+        protected BaseBuff(string id)
+        {
+            Id = id;
+        }
 
         public void Initialize(BuffConteiner conteiner)
         {
             this.conteiner = conteiner;
-            OnInitialize();
+            OnInitialized();
         }
         
-        protected virtual void OnInitialize() { }
+        protected virtual void OnInitialized() { }
 
         public void Deinitialize()
         {
@@ -29,7 +38,6 @@ namespace Magic.Buffs.Base
 
         public virtual void Update(float deltatime) { }
 
-        public object Clone() => 
-            this.MemberwiseClone();
+        public abstract object Clone();
     }
 }
