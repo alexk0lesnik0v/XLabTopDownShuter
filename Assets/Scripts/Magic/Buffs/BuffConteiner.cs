@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Magic.Buffs.Extensions;
 using Magic.Effects;
 using UnityEngine;
@@ -7,8 +8,13 @@ namespace Magic.Buffs
 {
     public sealed class BuffConteiner : MonoBehaviour, IEffectable
     {
+        public event Action<IBuff> BuffAdded;
+        public event Action<IBuff> BuffRemoved;
+        
         private HashSet<string> m_ids = new();
         private Dictionary<string, IBuff> m_buffs =  new();
+        
+        public IReadOnlyCollection<IBuff> Buffs => m_buffs.Values;
         
         public void Add(IBuff buff)
         {
@@ -38,7 +44,10 @@ namespace Magic.Buffs
 
             foreach (var id in m_ids)
             {
+                var buff = m_buffs[id];
+                
                 m_buffs.Remove(id);
+                BuffRemoved?.Invoke(buff);
             }
             
             m_ids.Clear();
