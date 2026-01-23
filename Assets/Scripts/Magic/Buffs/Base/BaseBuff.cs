@@ -38,6 +38,6 @@ namespace Magic.Buffs.Base
 
         public virtual void Update(float deltatime) { }
 
-        public abstract object Clone();
+        public abstract IBuff Clone();
     }
 }
