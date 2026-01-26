@@ -1,15 +1,14 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Magic.Buffs
 {
     public interface IBuff
     {
-        public string Id { get; }
+        public string id { get; }
         
-        public Sprite Icon { get; }
+        public Sprite icon { get; }
         
-        public BuffType Type { get; }
+        public BuffType type { get; }
         
         public void Initialize(BuffConteiner conteiner);
         

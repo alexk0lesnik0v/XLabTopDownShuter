@@ -2,7 +2,7 @@
 {
     public interface IAcceleration
     {
-        public void IncreaseAcceleration(float speed);
-        public void DecreaseAcceleration(float speed);
+        public void IncreaseAcceleration(float delta);
+        public void DecreaseAcceleration(float delta);
     }
 }

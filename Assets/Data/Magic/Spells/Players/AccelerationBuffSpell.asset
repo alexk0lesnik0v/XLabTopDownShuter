@@ -20,10 +20,16 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
+    - rid: 6696998389146976318
+      type: {class: AccelerationBuff, ns: Magic.Buffs.Base.Impls, asm: Assembly-CSharp}
+      data:
+        <id>k__BackingField: AccelarationBuff
+        <icon>k__BackingField: {fileID: 21300000, guid: 7f074c961bb27d94da8881a2a6104222, type: 3}
+        <type>k__BackingField: 0
+        m_duration: 5
+        m_value: 1.5
     - rid: 8166502202290733118
       type: {class: BuffEffect, ns: Magic.Effects, asm: Assembly-CSharp}
       data:
         m_buffs:
-        - rid: -2
+        - rid: 6696998389146976318

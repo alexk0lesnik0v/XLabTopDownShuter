@@ -25,6 +25,7 @@ namespace Entities.Enemies.Systems
 
         public void Initialize(float speed, Transform target)
         {
+            m_speed = speed;
             m_target = target;
             m_agent.speed = speed;
             m_isInitialized = true;
@@ -81,7 +82,13 @@ namespace Entities.Enemies.Systems
             m_agent.velocity = Vector3.zero;
         }
         
-        private void SetSpeed() => 
-            m_agent.speed = Mathf.Max(0, m_speed * m_acceleration);
+        private void SetSpeed()
+        {
+            var acceleration = m_acceleration > 0 
+                ? m_acceleration 
+                : 1;
+            
+            m_agent.speed = m_speed * acceleration;
+        }
     }
 }

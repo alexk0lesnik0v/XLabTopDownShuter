@@ -18,21 +18,23 @@ namespace Magic.Buffs
         
         public void Add(IBuff buff)
         {
-            if (m_buffs.TryGetValue(buff.Id, out IBuff existingBuff))
+            if (m_buffs.TryGetValue(buff.id, out IBuff existingBuff))
             {
                 existingBuff.Refresh(this);
-                m_ids.Remove(existingBuff.Id);
+                m_ids.Remove(existingBuff.id);
             }
             else
             {
-                m_buffs.Add(buff.Id, buff);
+                m_buffs.Add(buff.id, buff);
                 buff.Initialize(this);
+                
+                BuffAdded?.Invoke(buff);
             }
         }
 
         public void Remove(IBuff buff)
         {
-            m_ids.Add(buff.Id);
+            m_ids.Add(buff.id);
         }
 
         public void Update()
@@ -47,6 +49,7 @@ namespace Magic.Buffs
                 var buff = m_buffs[id];
                 
                 m_buffs.Remove(id);
+                
                 BuffRemoved?.Invoke(buff);
             }
             

@@ -13,9 +13,11 @@ namespace Magic.Buffs.Base.Impls
 
         public AccelerationBuff(
             string id,
+            Sprite icon,
+            BuffType type,
             float duration,
             float value)
-            : base(id, duration)
+            : base(id, icon, type, duration)
         {
             m_value = value;
         }
@@ -39,10 +41,10 @@ namespace Magic.Buffs.Base.Impls
         protected override void OnDeinitializing()
         {
             m_acceleration?.DecreaseAcceleration(m_value);
-            base.OnInitialized();
+            base.OnDeinitializing();
         }
 
         public override IBuff Clone() => 
-            new AccelerationBuff(Id, duration, m_value);
+            new AccelerationBuff(id, icon, type, duration, m_value);
     }
 }

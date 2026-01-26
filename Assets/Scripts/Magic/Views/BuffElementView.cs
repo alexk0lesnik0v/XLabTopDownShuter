@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Entities.Views
+namespace Magic.Views
 {
     public class BuffElementView : MonoBehaviour
     {
@@ -16,12 +16,13 @@ namespace Entities.Views
             m_buff = buff;
             gameObject.SetActive(true);
             m_timerImage.fillAmount = 1;
-            m_iconImage.sprite = buff.Icon;
+            m_iconImage.sprite = buff.icon;
         }
         
         public void Deinitialize()
         {
             m_buff = null;
+            m_timerImage.fillAmount = 0;
             gameObject.SetActive(false);
         }
         

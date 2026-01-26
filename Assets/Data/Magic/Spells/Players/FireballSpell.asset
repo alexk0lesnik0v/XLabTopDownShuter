@@ -18,7 +18,7 @@ MonoBehaviour:
   m_effects:
   - rid: 6696998299661500478
   - rid: 6696998299661500480
-  m_speed: 25
+  m_speed: 10
   references:
     version: 2
     RefIds:
@@ -30,8 +30,10 @@ MonoBehaviour:
     - rid: 6696998299661500479
       type: {class: PoisonDebuff, ns: Magic.Buffs.Base.Impls, asm: Assembly-CSharp}
       data:
-        <Id>k__BackingField: Poison
-        m_duration: 5
+        <id>k__BackingField: Poison
+        <icon>k__BackingField: {fileID: 21300000, guid: 47286ec93248ab44b82c1cb0c316a4f3, type: 3}
+        <type>k__BackingField: 1
+        m_duration: 10
         m_interval: 1
         m_damagedPerSeconds: 2
     - rid: 6696998299661500480
