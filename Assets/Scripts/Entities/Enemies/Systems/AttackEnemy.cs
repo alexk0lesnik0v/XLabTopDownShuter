@@ -10,14 +10,16 @@ namespace Entities.Enemies.Systems
     public sealed class AttackEnemy : MonoBehaviour
     {
         private Transform m_target;
-        private IReadOnlyList<SpellEnemyData> m_spells;
         private SpellCaster m_spellCaster;
+        private IReadOnlyList<SpellEnemyData> m_spells;
 
         private float m_attackTime;
-        private float m_cooldownTimer;
-        
         private bool m_isInitialized;
+        private float m_cooldownTimer;
 
+        private int m_count;
+        private int m_maxCount;
+        
         public void Initialize(IReadOnlyList<SpellEnemyData> spells, float attackTime, Transform target)
         {
             if (m_isInitialized)
@@ -25,23 +27,12 @@ namespace Entities.Enemies.Systems
                 return;
             }
             
-            var newSpells = spells.Where(spell => spell.count > 3);
-
-            foreach (var spell in newSpells)
-            {
-                Debug.Log(spell.count);
-            }
-            
-            foreach (var spell in spells
-                         .Where(spell => spell.count > 3))
-            {
-                Debug.Log(spell.count);
-            }
-            
             m_target = target;
             m_attackTime = attackTime;
+            m_spells = spells.OrderBy(spell => spell.count).ToArray();
             m_spellCaster = new SpellCaster(transform, true);
             
+            m_maxCount = m_spells[^1].count;
             m_isInitialized = true;
         }
 
@@ -69,10 +60,23 @@ namespace Entities.Enemies.Systems
             {
                 return false;
             }
+
+            m_count++;
+            var spell = m_spells.FirstOrDefault(spell => spell.count == m_count);
+
+            if (spell.spell is null)
+            {
+                m_spellCaster.Cast(m_spells[0].spell, m_target.position);
+            }
+            else
+            {
+                m_spellCaster.Cast(spell.spell, m_target.position);
+            }
+
+            if (m_count == m_maxCount)
+                m_count = 0;
             
-            //m_spellCaster.Cast(m_spell, m_target.position);
             m_cooldownTimer = m_attackTime;
-            
             return true;
         }
     }

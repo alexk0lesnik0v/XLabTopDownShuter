@@ -15,7 +15,7 @@ namespace Entities.Enemies.Data
         [SerializeField] [Range(0f, 100f)] private float m_speed;
         
         [Header("Attack")]
-        [SerializeField] private SpellEnemyData[] m_spell;
+        [SerializeField] private SpellEnemyData[] m_spells;
         [SerializeField] [Min(0)] private float m_attackTime;
         [SerializeField] [Min(0)] private float m_attackRange;
         
@@ -29,7 +29,7 @@ namespace Entities.Enemies.Data
         
         public AttackEnemyType enemyType => m_enemyType;
         
-        public IReadOnlyList<SpellEnemyData> spell => m_spell;
+        public IReadOnlyList<SpellEnemyData> spells => m_spells;
     }
 
     [Serializable]
