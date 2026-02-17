@@ -11,6 +11,7 @@ namespace Entities.Enemies.Systems
     {
         private Transform m_target;
         private SpellCaster m_spellCaster;
+        private BaseSpellData m_defaultSpell;
         private IReadOnlyList<SpellEnemyData> m_spells;
 
         private float m_attackTime;
@@ -20,7 +21,11 @@ namespace Entities.Enemies.Systems
         private int m_count;
         private int m_maxCount;
         
-        public void Initialize(IReadOnlyList<SpellEnemyData> spells, float attackTime, Transform target)
+        public void Initialize(
+            BaseSpellData defaultSpell,
+            IReadOnlyList<SpellEnemyData> spells, 
+            float attackTime, 
+            Transform target)
         {
             if (m_isInitialized)
             {
@@ -29,10 +34,11 @@ namespace Entities.Enemies.Systems
             
             m_target = target;
             m_attackTime = attackTime;
+            m_defaultSpell = defaultSpell;
             m_spells = spells.OrderBy(spell => spell.count).ToArray();
             m_spellCaster = new SpellCaster(transform, true);
             
-            m_maxCount = m_spells[^1].count;
+            m_maxCount = m_spells.LastOrDefault().count;
             m_isInitialized = true;
         }
 
@@ -66,7 +72,7 @@ namespace Entities.Enemies.Systems
 
             if (spell.spell is null)
             {
-                m_spellCaster.Cast(m_spells[0].spell, m_target.position);
+                m_spellCaster.Cast(m_defaultSpell, m_target.position);
             }
             else
             {
