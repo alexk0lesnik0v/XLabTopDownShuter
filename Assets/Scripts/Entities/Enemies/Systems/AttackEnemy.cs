@@ -38,7 +38,7 @@ namespace Entities.Enemies.Systems
             m_spells = spells.OrderBy(spell => spell.count).ToArray();
             m_spellCaster = new SpellCaster(transform, true);
             
-            m_maxCount = m_spells.LastOrDefault().count;
+            m_maxCount = spells.LastOrDefault().count;
             m_isInitialized = true;
         }
 
