@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Entities.Enemies;
+using Players;
 using UI;
 using UnityEngine;
 
@@ -98,34 +99,59 @@ namespace Infrastructure.States
    {
       private readonly StateMachine m_stateMachine;
       private readonly SpawnerEnemy m_spawnerEnemy;
+      private readonly PlayerController m_playerController;
 
       public GameplayState(
          StateMachine stateMachine,
-         SpawnerEnemy spawnerEnemy)
+         SpawnerEnemy spawnerEnemy,
+         PlayerController playerController)
       {
          m_spawnerEnemy = spawnerEnemy;
          m_stateMachine = stateMachine;
+         m_playerController = playerController;
       }
       
       public void Enter()
       {
          m_spawnerEnemy.Spawn();
+         m_playerController.Health.Died += OnDied;
+      }
+
+      public void Exit()
+      {
+         m_playerController.Health.Died -= OnDied;
       }
       
-      public void Exit() => throw new NotImplementedException();
+      private void OnDied() =>
+         m_stateMachine.ChangedState<DeadState>();
    }
    
    public class DeadState : IState
    {
       private readonly StateMachine m_stateMachine;
+      private readonly DeadMenuView m_deadMenuView;
 
-      public DeadState(StateMachine stateMachine)
+      public DeadState(StateMachine stateMachine, DeadMenuView deadMenuView)
       {
          m_stateMachine = stateMachine;
+         m_deadMenuView = deadMenuView;
+         
+         deadMenuView.gameObject.SetActive(false);
+      }
+
+      public void Enter()
+      {
+         m_deadMenuView.GoToMenuClicked += OnGoToMenuClicked;
+         m_deadMenuView.gameObject.SetActive(true);
+      }
+     
+      public void Exit()
+      {
+         m_deadMenuView.GoToMenuClicked -= OnGoToMenuClicked;
+         m_deadMenuView.gameObject.SetActive(false);
       }
       
-      public void Enter() => throw new NotImplementedException();
-      
-      public void Exit() => throw new NotImplementedException();
+      private void OnGoToMenuClicked() =>
+         m_stateMachine.ChangedState<MainMenuState>();
    }
 }

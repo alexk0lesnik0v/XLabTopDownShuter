@@ -1,5 +1,6 @@
 ﻿using Entities.Enemies;
 using Infrastructure.States;
+using Players;
 using UI;
 using UnityEngine;
 
@@ -7,8 +8,10 @@ namespace Infrastructure
 {
     public class Bootstrap : MonoBehaviour
     {
+        [SerializeField] private DeadMenuView m_deadMenuView;
         [SerializeField] private MainMenuView m_mainMenuView;
         [SerializeField] private SpawnerEnemy m_enemySpawner;
+        [SerializeField] private PlayerController m_playerController;
         
         private void Awake()
         {
@@ -17,8 +20,8 @@ namespace Infrastructure
             stateMachine.Initialize(
                 new MainMenuState(stateMachine, m_mainMenuView),
                 new PauseMenuState(stateMachine),
-                new DeadState(stateMachine),
-                new GameplayState(stateMachine, m_enemySpawner));
+                new DeadState(stateMachine, m_deadMenuView),
+                new GameplayState(stateMachine, m_enemySpawner, m_playerController));
             
             stateMachine.ChangedState<MainMenuState>();
         }

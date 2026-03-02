@@ -1,4 +1,5 @@
-﻿using Entities.Enemies.Data;
+﻿using System.Collections.Generic;
+using Entities.Enemies.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,6 +11,8 @@ namespace Entities.Enemies
         [SerializeField] private EnemyData[] m_data;
         [SerializeField] private Transform[] m_spawnPoints;
         [SerializeField] private Transform m_playerTransform;
+        
+        private List<Enemy> m_currentEnemies = new();
 
         public void Spawn()
         {
@@ -22,13 +25,24 @@ namespace Entities.Enemies
                 enemyInstance.Initialize(enemyData, m_playerTransform);
 
                 enemyInstance.Died += OnDied;
+                m_currentEnemies.Add(enemy);
             }
+        }
+
+        public void DespawnAll()
+        {
+            foreach (var enemy in m_currentEnemies)
+            {
+                DestroyEnemy(enemy);
+            }
+            
+            m_currentEnemies.Clear();
         }
 
         private void OnDied(Enemy enemy)
         {
-            enemy.Died -= OnDied;
-            Destroy(enemy.gameObject);
+            m_currentEnemies.Remove(enemy);
+            DestroyEnemy(enemy);
         }
 
 
@@ -37,5 +51,11 @@ namespace Entities.Enemies
         
         private EnemyData  GetEnemyData() =>
             m_data[Random.Range(0, m_data.Length)];
+
+        private void DestroyEnemy(Enemy enemy)
+        {
+            enemy.Died -= OnDied;
+            Destroy(enemy.gameObject);
+        }
     }
 }
