@@ -11,12 +11,6 @@ namespace Entities.Enemies
         [SerializeField] private Transform[] m_spawnPoints;
         [SerializeField] private Transform m_playerTransform;
 
-        //TODO XLab - Remove
-        private void Start()
-        {
-            Spawn();
-        }
-
         public void Spawn()
         {
             foreach (var spawnPoint in m_spawnPoints)
