@@ -4,6 +4,7 @@ using Entities.Enemies;
 using Players;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Infrastructure.States
 {
@@ -35,50 +36,9 @@ namespace Infrastructure.States
 
    public interface IState
    {
-      public void Enter() => throw new NotImplementedException();
+      public void Enter();
       
-      public void Exit() => throw new NotImplementedException();
-   }
-   
-   public class MainMenuState : IState
-   {
-      private readonly StateMachine m_stateMachine;
-      private readonly MainMenuView m_mainMenuView;
-
-      public MainMenuState(
-         StateMachine stateMachine,
-         MainMenuView mainMenuView)
-      {
-         m_stateMachine = stateMachine;
-         m_mainMenuView = mainMenuView;
-         
-         m_mainMenuView.gameObject.SetActive(false);
-      }
-
-      public void Enter()
-      {
-         m_mainMenuView.gameObject.SetActive(true);
-         m_mainMenuView.PlayClicked += OnPlayClicked;
-         m_mainMenuView.ExitClicked += OnExitClicked;
-      }
-      
-     public void Exit()
-      {
-         m_mainMenuView.PlayClicked -= OnPlayClicked;
-         m_mainMenuView.ExitClicked -= OnExitClicked;
-         m_mainMenuView.gameObject.SetActive(false);
-      }
-      
-      private void OnPlayClicked() =>
-         m_stateMachine.ChangedState<GameplayState>();
-      
-      private void OnExitClicked()
-      {
-#if UNITY_EDITOR
-         UnityEditor.EditorApplication.ExitPlaymode();
-#endif
-         Application.Quit();
-      }
+      public void Exit();
    }
    
    public class PauseMenuState : IState
@@ -150,8 +110,10 @@ namespace Infrastructure.States
          m_deadMenuView.GoToMenuClicked -= OnGoToMenuClicked;
          m_deadMenuView.gameObject.SetActive(false);
       }
-      
-      private void OnGoToMenuClicked() =>
-         m_stateMachine.ChangedState<MainMenuState>();
+
+      private void OnGoToMenuClicked()
+      {
+         SceneManager.LoadScene(GlobalConstants.Scenes.Main);
+      }
    }
 }

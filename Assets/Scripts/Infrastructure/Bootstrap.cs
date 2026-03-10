@@ -18,12 +18,11 @@ namespace Infrastructure
             var stateMachine =  new StateMachine();
             
             stateMachine.Initialize(
-                new MainMenuState(stateMachine, m_mainMenuView),
                 new PauseMenuState(stateMachine),
                 new DeadState(stateMachine, m_deadMenuView),
                 new GameplayState(stateMachine, m_enemySpawner, m_playerController));
             
-            stateMachine.ChangedState<MainMenuState>();
+            stateMachine.ChangedState<GameplayState>();
         }
     }
 }
