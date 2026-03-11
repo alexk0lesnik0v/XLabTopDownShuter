@@ -1,4 +1,6 @@
-﻿using Players;
+﻿using System;
+using Infrastructure;
+using Players;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,18 +9,19 @@ namespace Markers
     public sealed class TargetMarkerObserver : MonoBehaviour
     {
         [SerializeField] private TargetMarker m_targetMarker;
-        [SerializeField] private PlayerMovement m_playerMovement;
+        
+        private PlayerMovement m_playerMovement;
 
-        private void OnEnable()
+        public void Initialize(PlayerMovement playerMovement)
         {
+            m_playerMovement = playerMovement;
             m_playerMovement.Stopped += OnPlayerStopped;
             m_playerMovement.DestinationChanged += OnDestinationChanged;
         }
 
-        private void OnDisable()
+        private void Deinitialize()
         {
-            m_playerMovement.Stopped -= OnPlayerStopped;
-            m_playerMovement.DestinationChanged -= OnDestinationChanged;
+            
         }
         
         private void OnPlayerStopped() => 

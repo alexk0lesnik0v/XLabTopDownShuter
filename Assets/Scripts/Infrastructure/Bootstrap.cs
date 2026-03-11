@@ -1,5 +1,7 @@
-﻿using Entities.Enemies;
+﻿using Cameras;
+using Entities.Enemies;
 using Infrastructure.States;
+using Markers;
 using Players;
 using UI;
 using UnityEngine;
@@ -8,10 +10,12 @@ namespace Infrastructure
 {
     public class Bootstrap : MonoBehaviour
     {
+        [SerializeField] private TargetMarkerObserver m_targetMarkerObserver;
         [SerializeField] private BootstrapState m_bootstrapState;
         [SerializeField] private DeadMenuView m_deadMenuView;
         [SerializeField] private SpawnerEnemy m_enemySpawner;
-        [SerializeField] private PlayerController m_playerController;
+        [SerializeField] private AimLineMarker m_aimLineMarker;
+        [SerializeField] private CameraFollow m_cameraFollow;
         
         private void Awake()
         {
@@ -22,7 +26,12 @@ namespace Infrastructure
                 m_bootstrapState,
                 new PauseMenuState(stateMachine),
                 new DeadState(stateMachine, m_deadMenuView),
-                new GameplayState(stateMachine, m_enemySpawner, m_playerController));
+                new GameplayState(
+                    stateMachine,
+                    m_cameraFollow,
+                    m_enemySpawner,
+                    m_aimLineMarker,
+                    m_targetMarkerObserver));
             
             stateMachine.ChangedState<BootstrapState>();
         }
