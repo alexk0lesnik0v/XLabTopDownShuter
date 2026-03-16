@@ -603,7 +603,7 @@ Transform:
   m_GameObject: {fileID: 480450522}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.8, y: 0, z: 0}
+  m_LocalPosition: {x: -24.8, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -730,8 +730,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 603685614}
-  - component: {fileID: 603685615}
   - component: {fileID: 603685616}
+  - component: {fileID: 603685617}
   m_Layer: 0
   m_Name: Bootstrap
   m_TagString: Untagged
@@ -754,24 +754,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1686568579}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &603685615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 603685613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b52601516d6e46da98835b57172dfd33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Infrastructure.Bootstrap
-  m_targetMarkerObserver: {fileID: 914269435}
-  m_bootstrapState: {fileID: 603685616}
-  m_deadMenuView: {fileID: 693386099}
-  m_enemySpawner: {fileID: 1819320726}
-  m_aimLineMarker: {fileID: 938050319}
-  m_cameraFollow: {fileID: 330585548}
 --- !u!114 &603685616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -786,6 +768,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Infrastructure.States.BootstrapState
   m_mouseResolver: {fileID: 469594914}
   m_playerSpawnPoint: {fileID: 1840583833}
+--- !u!114 &603685617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603685613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5a309c2fb41484986efd785f94de630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Infrastructure.BootstrapGameplay
+  m_targetMarkerObserver: {fileID: 914269435}
+  m_bootstrapState: {fileID: 603685616}
+  m_deadMenuView: {fileID: 693386099}
+  m_enemySpawner: {fileID: 1819320726}
+  m_aimLineMarker: {fileID: 938050319}
+  m_cameraFollow: {fileID: 330585548}
+  m_pauseMenuView: {fileID: 1825765289}
 --- !u!1001 &648812663
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1502,7 +1503,7 @@ Transform:
   m_GameObject: {fileID: 922337110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -11.5}
+  m_LocalPosition: {x: -27.4, y: 0, z: -11.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2235,7 +2236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Markers.TargetMarker
   m_stsrtSize: 0.25
   m_finishSize: 0.75
-  m_duration: 6
+  m_duration: 0.5
   m_ease: 4
 --- !u!212 &1508813473
 SpriteRenderer:
@@ -2401,6 +2402,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6106964581532915020, guid: fe2081c386ab9b6448765f22ca084ce1, type: 3}
   m_PrefabInstance: {fileID: 1539367599}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1539367601 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6154799465662729889, guid: fe2081c386ab9b6448765f22ca084ce1, type: 3}
+  m_PrefabInstance: {fileID: 1539367599}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &1686568578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2464,7 +2476,7 @@ Transform:
   m_GameObject: {fileID: 1717836084}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 13.65}
+  m_LocalPosition: {x: -22.8, y: 0, z: 13.65}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2539,6 +2551,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1825765288}
+  - component: {fileID: 1825765289}
   m_Layer: 5
   m_Name: PauseMenuState
   m_TagString: Untagged
@@ -2567,6 +2580,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1825765289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1825765287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e24130096243b19a9be6010c2c1db9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.PauseMenuView
+  m_continue: {fileID: 8293027743430945754}
+  m_mainMenu: {fileID: 1539367601}
 --- !u!1 &1840583831
 GameObject:
   m_ObjectHideFlags: 0
@@ -2715,7 +2742,7 @@ Transform:
   m_GameObject: {fileID: 1932541811}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.06, y: 0, z: -8.6}
+  m_LocalPosition: {x: -47.2, y: 0, z: -8.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2746,7 +2773,7 @@ Transform:
   m_GameObject: {fileID: 2007624603}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.43, y: 0, z: 2.39}
+  m_LocalPosition: {x: -18.8, y: 0, z: 2.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2914,6 +2941,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe2081c386ab9b6448765f22ca084ce1, type: 3}
+--- !u!114 &8293027743430945754 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6154799465662729889, guid: fe2081c386ab9b6448765f22ca084ce1, type: 3}
+  m_PrefabInstance: {fileID: 8293027743430945753}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

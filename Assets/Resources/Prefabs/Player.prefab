@@ -507,7 +507,6 @@ MonoBehaviour:
   m_config: {fileID: 11400000, guid: 5de470c596af5434da635e3fae9713d9, type: 2}
   m_health: {fileID: 6052604379472021160}
   m_playerMovement: {fileID: 7629991807017933800}
-  m_mouseResolver: {fileID: 0}
   m_magicInputHelper:
     m_magicSystem: {fileID: 5249487897441044614}
     m_element1Key: 31
@@ -1051,6 +1050,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7041268103597841912, guid: fafd73f343cdc4742986113d0872d345, type: 3}
+      propertyPath: m_buffConteiner
+      value: 
+      objectReference: {fileID: 5838030358654182153}
     - target: {fileID: 7745950419098016570, guid: fafd73f343cdc4742986113d0872d345, type: 3}
       propertyPath: m_Sprite
       value: 

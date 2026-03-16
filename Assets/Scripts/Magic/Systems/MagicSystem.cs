@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Infrastructure;
 using Inputs;
 using Magic.Data;
 using Magic.Elements;
@@ -19,7 +20,8 @@ namespace Magic.Systems
         } 
         
         [SerializeField] private MagicConfig m_config;
-        [SerializeField] private MouseResolver m_mouseResolver;
+        
+        private MouseResolver mouseResolver => ServiceLocator.Resolve<MouseResolver>();
         
         private MagicState m_state;
         private SpellCaster m_caster;
@@ -77,7 +79,7 @@ namespace Magic.Systems
             {
                 state = MagicState.Casting;
                 
-                m_caster.Cast(spell, m_mouseResolver.GetCursorWorldPosition().Value);
+                m_caster.Cast(spell, mouseResolver.GetCursorWorldPosition().Value);
 
                 spellPreparation.Clear();
                 state = MagicState.Idle;
