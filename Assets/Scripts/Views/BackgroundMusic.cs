@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private static BackgroundMusic m_instance;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        if (m_instance)
+        {
+            if (m_instance == this)
+            {
+                return;
+            }
+
+            Destroy(gameObject);
+            return;
+        }
+        m_instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 }
