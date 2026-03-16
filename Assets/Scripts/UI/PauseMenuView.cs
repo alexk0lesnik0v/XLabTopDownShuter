@@ -6,8 +6,8 @@ namespace UI
 {
     public class PauseMenuView : MonoBehaviour
     {
-        public event Action ContinueClick;
-        public event Action MainMenuClick;
+        public event Action ContinueClicked;
+        public event Action MainMenuClicked;
         
         [SerializeField] private Button m_continue;
         [SerializeField] private Button m_mainMenu;
@@ -25,9 +25,9 @@ namespace UI
         }
 
         private void OnMainMenuClick() => 
-            MainMenuClick?.Invoke();
+            MainMenuClicked?.Invoke();
 
         private void OnContinueClick() => 
-            ContinueClick?.Invoke();
+            ContinueClicked?.Invoke();
     }
 }

@@ -23,5 +23,8 @@ namespace Infrastructure
             
             return m_serviceLocator.m_services[typeof(T)] as T;
         }
+        
+        public static void Clear() =>
+            m_serviceLocator?.m_services.Clear();
     }
 }

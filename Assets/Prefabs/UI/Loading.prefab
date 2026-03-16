@@ -1288,6 +1288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6247132251007519890}
+  - component: {fileID: 5138925068431778695}
   m_Layer: 5
   m_Name: Loading
   m_TagString: Untagged
@@ -1316,6 +1317,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5138925068431778695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5240502902341737415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2710ca48ffa34fadbdc4a2d8cae95615, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Infrastructure.Loading
+  m_loading: {fileID: 2320746718326600094}
 --- !u!1 &5553073608874052598
 GameObject:
   m_ObjectHideFlags: 0
